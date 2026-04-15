@@ -5,45 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LocalMotoHub</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="google-sheets-integration.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff5722;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .card {
+            background-color: #1e1e1e;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff5722;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Welcome to LocalMotoHub</h1>
     </header>
-    <section id="overview">
-        <h2>System Overview</h2>
-        <div class="card">Card 1</div>
-        <div class="card">Card 2</div>
-        <div class="card">Card 3</div>
-    </section>
-    <section id="class-structure">
-        <h2>Class Structure</h2>
-        <p>Details about class structure...</p>
-    </section>
-    <section id="leaderboard">
-        <h2>Leaderboard</h2>
-        <div id="leaderboard-data"></div>
-    </section>
-    <section id="local-charter">
-        <h2>Local Charter</h2>
-        <p>Information about local charter...</p>
-    </section>
-    <section id="trails">
-        <h2>Trails</h2>
-        <p>Details about trails...</p>
-    </section>
-    <section id="submission-form">
-        <h2>Submission Form</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Submission" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <div class="container">
+        <section class="system-overview">
+            <h2>System Overview</h2>
+            <div class="card">License Level 1</div>
+            <div class="card">License Level 2</div>
+            <div class="card">Rating Type 1</div>
+            <div class="card">Rating Type 2</div>
+        </section>
+        <section class="vehicle-classes">
+            <h2>Vehicle Classes</h2>
+            <div class="grid">
+                <div class="card">Class 1</div>
+                <div class="card">Class 2</div>
+                <div class="card">Class 3</div>
+            </div>
+        </section>
+        <section class="leaderboard">
+            <h2>Gaines County Leaderboard</h2>
+            <input type="text" placeholder="Filter..." id="filter">
+            <div id="leaderboard-list">
+                <div class="card">Sample Data 1</div>
+                <div class="card">Sample Data 2</div>
+                <div class="card">Sample Data 3</div>
+            </div>
+        </section>
+        <section class="local-trails">
+            <h2>Local Trails</h2>
+            <div class="card">Trail 1</div>
+            <div class="card">Trail 2</div>
+            <div class="card">Trail 3</div>
+            <div class="card">Trail 4</div>
+            <div class="card">Trail 5</div>
+            <div class="card">Trail 6</div>
+        </section>
+        <section class="submission-form">
+            <h2>Submit Your Trail</h2>
+            <form>
+                <input type="text" placeholder="Trail Name" required>
+                <textarea placeholder="Trail Description" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>
     <footer>
         <p>&copy; 2026 LocalMotoHub</p>
     </footer>
+    <script>
+        // Sample leaderboard data refresh function
+        function refreshLeaderboard() {
+            // Logic to refresh leaderboard data goes here.
+            console.log('Leaderboard data refreshed');
+        }
+        setInterval(refreshLeaderboard, 43200000); // refresh every 12 hours
+    </script>
 </body>
 </html>
