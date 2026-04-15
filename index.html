@@ -1,1 +1,188 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LocalMotoHub - Local Rider Rankings</title><style>* {margin: 0; padding: 0; box-sizing: border-box;} body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); color: #e0e0e0; line-height: 1.6;} header {background: linear-gradient(135deg, #1a1f3a 0%, #2d1b4e 100%); border-bottom: 3px solid #ff6b35; padding: 40px 20px; text-align: center; box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);} header h1 {font-size: 3rem; color: #ff6b35; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);} header .subtitle {font-size: 1.2rem; color: #64b5f6; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px;} header .description {max-width: 800px; margin: 15px auto 0; font-size: 0.95rem; color: #b0bec5; line-height: 1.8;} .container {max-width: 1200px; margin: 0 auto; padding: 0 20px;} section {margin: 60px 0; animation: fadeIn 0.6s ease-in;} section h2 {font-size: 2rem; color: #ff6b35; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #ff6b35; padding-bottom: 15px;} @keyframes fadeIn {from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);}} .cards-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;} .card {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border-left: 4px solid #ff6b35; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;} .card:hover {transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2); border-left-color: #64b5f6;} .card h3 {color: #64b5f6; margin-bottom: 12px; font-size: 1.2rem;} .card p {font-size: 0.9rem; color: #b0bec5; line-height: 1.7;} .class-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;} .class-box {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border: 2px solid #64b5f6; padding: 20px; border-radius: 8px; text-align: center; transition: all 0.3s ease;} .class-box:hover {border-color: #ff6b35; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);} .class-box h3 {color: #ff6b35; margin-bottom: 12px; font-weight: 700;} .class-box p {font-size: 0.85rem; color: #b0bec5;} .leaderboard-wrapper {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); margin-bottom: 20px;} .leaderboard-controls {padding: 20px; background: rgba(255, 107, 53, 0.1); border-bottom: 2px solid #ff6b35; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;} .leaderboard-controls label {color: #64b5f6; font-weight: 600;} .leaderboard-controls select {background: #16213e; color: #e0e0e0; border: 1px solid #64b5f6; padding: 8px 12px; border-radius: 4px; cursor: pointer;} .leaderboard-controls select:hover {border-color: #ff6b35;} .refresh-info {margin-left: auto; font-size: 0.85rem; color: #90caf9;} table {width: 100%; border-collapse: collapse;} table th {background: linear-gradient(135deg, #ff6b35 0%, #ff8a50 100%); color: #fff; padding: 15px; text-align: left; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;} table td {padding: 15px; border-bottom: 1px solid #2d3748; color: #e0e0e0;} table tr:hover {background: rgba(255, 107, 53, 0.1);} .rank-badge {display: inline-block; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-weight: 700; font-size: 0.9rem;} .rank-1 {background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #333;} .rank-2 {background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%); color: #333;} .rank-3 {background: linear-gradient(135deg, #cd7f32 0%, #e6a856 100%); color: #fff;} .rank-default {background: #2d3748; color: #64b5f6;} .license-badge {display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;} .license-pro {background: #ff6b35; color: #fff;} .license-proam {background: #ff8a50; color: #fff;} .license-intermediate {background: #64b5f6; color: #fff;} .license-amateur {background: #4db8ff; color: #fff;} .trails-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;} .trail-card {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border: 2px solid #64b5f6; padding: 25px; border-radius: 8px; transition: all 0.3s ease;} .trail-card:hover {border-color: #ff6b35; box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);} .trail-card .icon {font-size: 2.5rem; margin-bottom: 10px;} .trail-card h3 {color: #ff6b35; margin-bottom: 12px; font-size: 1.3rem;} .trail-card p {font-size: 0.9rem; color: #b0bec5; margin-bottom: 10px;} .trail-stat {background: rgba(100, 181, 246, 0.1); padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-size: 0.85rem; color: #64b5f6;} .form-wrapper {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border: 2px solid #64b5f6; padding: 40px; border-radius: 8px; max-width: 600px; margin: 0 auto;} .form-group {margin-bottom: 20px;} .form-group label {display: block; margin-bottom: 8px; color: #64b5f6; font-weight: 600; font-size: 0.95rem;} .form-group input, .form-group select, .form-group textarea {width: 100%; padding: 12px; background: #0a0e27; border: 1px solid #64b5f6; border-radius: 4px; color: #e0e0e0; font-size: 0.95rem; font-family: inherit; transition: all 0.3s ease;} .form-group input:focus, .form-group select:focus, .form-group textarea:focus {outline: none; border-color: #ff6b35; box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);} .form-group textarea {resize: vertical; min-height: 100px;} .note {background: rgba(255, 107, 53, 0.1); border-left: 4px solid #ff6b35; padding: 15px; margin: 20px 0; border-radius: 4px; font-size: 0.9rem; color: #b0bec5;} .submit-btn {width: 100%; padding: 14px; background: linear-gradient(135deg, #ff6b35 0%, #ff8a50 100%); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;} .submit-btn:hover {transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);} footer {background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); border-top: 2px solid #ff6b35; padding: 30px 20px; text-align: center; color: #90caf9; font-size: 0.9rem; margin-top: 80px;} footer p {margin: 10px 0;} footer a {color: #ff6b35; text-decoration: none; transition: color 0.3s ease;} footer a:hover {color: #64b5f6; text-decoration: underline;} .coming-soon {background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border: 2px dashed #ff6b35; padding: 60px 20px; text-align: center; border-radius: 8px; color: #b0bec5;} .coming-soon h3 {color: #ff6b35; font-size: 2rem; margin-bottom: 15px;} .loading {text-align: center; padding: 40px; color: #64b5f6;} .spinner {border: 3px solid rgba(100, 181, 246, 0.2); border-top: 3px solid #ff6b35; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px;} @keyframes spin {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}} @media (max-width: 768px) {header h1 {font-size: 2rem;} header .subtitle {font-size: 1rem;} section h2 {font-size: 1.5rem;} .leaderboard-controls {flex-direction: column; align-items: flex-start;} .refresh-info {margin-left: 0; margin-top: 10px;} .form-wrapper {padding: 25px;} table th, table td {padding: 10px; font-size: 0.85rem;} .rank-badge {width: 25px; height: 25px; line-height: 25px; font-size: 0.8rem;}} </style></head><body><header><h1>🏁 LocalMotoHub</h1><div class="subtitle">Local Rider Rankings • Trail Performance • Community Driven</div><div class="description"><p><strong>How it works:</strong> Riders submit trail runs with GPS logs or video evidence. Our community reviews submissions and assigns rankings based on performance metrics. Rankings and licenses are updated monthly.</p></div></header><div class="container"><section id="overview"><h2>📊 System Overview</h2><h3 style="color: #64b5f6; margin-top: 40px; margin-bottom: 20px;">License Levels</h3><div class="cards-grid"><div class="card"><h3>🏆 Pro</h3><p>Elite riders with consistent top performance. Minimum 3+ years competitive trail riding experience.</p></div><div class="card"><h3>⭐ Pro-Am</h3><p>Advanced intermediate riders pushing for pro status. Demonstrated skill across multiple trail types.</p></div><div class="card"><h3>📈 Intermediate</h3><p>Solid riders with good fundamentals. Consistent performance on technical sections.</p></div><div class="card"><h3>🎯 Amateur</h3><p>Developing riders. Entry level with basic trail skills and growing experience.</p></div></div><h3 style="color: #64b5f6; margin-top: 40px; margin-bottom: 20px;">Rating Types</h3><div class="cards-grid"><div class="card"><h3>🎯 Overall Rating</h3><p>Composite score (0–100) combining all performance metrics. Your headline ranking.</p></div><div class="card"><h3>⚡ Single Lap Pace</h3><p>Peak speed and precision on one clean run. Best lap time relative to class average.</p></div><div class="card"><h3>🔄 Enduro Pace</h3><p>Consistency over multiple laps. How well you maintain performance as fatigue sets in.</p></div><div class="card"><h3>🎪 Moto Consistency</h3><p>Reliability across different trail conditions and rider rotation events.</p></div><div class="card"><h3>💪 Adaptability</h3><p><span style="color: #90caf9;">BOOST ONLY:</span> Advanced technique bonus. Never lowers score. Rewards riders who excel in varied terrain.</p></div></div></section><section id="classes"><h2>🏍️ Vehicle Classes</h2><div class="class-grid"><div class="class-box"><h3>85cc–140cc<br>(4-Stroke)</h3><p>Beginner to intermediate class.</p></div><div class="class-box"><h3>145cc–210cc</h3><p>Mid-range trail bikes.</p></div><div class="class-box"><h3>250cc</h3><p>Performance trail class.</p></div><div class="class-box"><h3>450cc</h3><p>High-performance bikes.</p></div><div class="class-box"><h3>Open<br>(ATV / SxS)</h3><p>All-terrain vehicles & side-by-sides.</p></div></div></section><section id="leaderboard"><h2>🏁 Gaines County Rankings</h2><div class="leaderboard-wrapper"><div class="leaderboard-controls"><label for="classFilter">Filter by Class:</label><select id="classFilter" onchange="filterLeaderboard()"><option value="">All Classes</option><option value="85cc–140cc (4-Stroke)">85cc–140cc (4-Stroke)</option><option value="145cc–210cc">145cc–210cc</option><option value="250cc">250cc</option><option value="450cc">450cc</option><option value="Open (ATV/SxS)">Open (ATV/SxS)</option></select><label for="ratingFilter" style="margin-left: 20px;">Sort by:</label><select id="ratingFilter" onchange="filterLeaderboard()"><option value="overall">Overall Rating</option><option value="pace">Single Lap Pace</option><option value="enduro">Enduro Pace</option><option value="consistency">Moto Consistency</option></select><div class="refresh-info">📡 Last update: <span id="lastUpdate">Loading...</span><br>🔄 Auto-refresh: Every 12 hours</div></div><div id="leaderboardContainer" style="overflow-x: auto;"><div class="loading"><div class="spinner"></div><p>Loading leaderboard data...</p></div></div></div><div style="margin-top: 20px; padding: 15px; background: rgba(100, 181, 246, 0.1); border-left: 4px solid #64b5f6; border-radius: 4px; color: #b0bec5; font-size: 0.9rem;">💡 <strong>Data Source:</strong> Rankings are pulled from our community submission sheet. All times are GPS-verified or video-verified.</div></section><section id="trails"><h2>🌲 Local Trail Runs</h2><div class="trails-grid"><div class="trail-card"><div class="icon">🏜️</div><h3>West Loop Trail</h3><p>Sandy, rolling terrain with tight turns. 8.2 mi circuit.</p><div class="trail-stat">⏱️ Best Time: 42:15</div><div class="trail-stat">🏆 Leader: Alex Martinez</div><div class="trail-stat">📊 Avg Rating Boost: +8</div></div><div class="trail-card"><div class="icon">💨</div><h3>Sand Pit Run</h3><p>High-speed dune section with jumps. Technical landing zones. 5.1 mi.</p><div class="trail-stat">⏱️ Best Time: 18:45</div><div class="trail-stat">🏆 Leader: Jordan Lee</div><div class="trail-stat">📊 Avg Rating Boost: +12</div></div><div class="trail-card"><div class="icon">🌊</div><h3>Creek Line Enduro</h3><p>Wooded technical section with water crossings. Endurance focused. 11.4 mi.</p><div class="trail-stat">⏱️ Best Time: 1:03:22</div><div class="trail-stat">🏆 Leader: Casey Johnson</div><div class="trail-stat">📊 Avg Rating Boost: +6</div></div><div class="trail-card"><div class="icon">⛰️</div><h3>Ridge Climb Challenge</h3><p>Steep uphill technical section. Traction and throttle control. 3.7 mi.</p><div class="trail-stat">⏱️ Best Time: 22:08</div><div class="trail-stat">🏆 Leader: Morgan Davis</div><div class="trail-stat">📊 Avg Rating Boost: +9</div></div><div class="trail-card"><div class="icon">🪨</div><h3>Rocky Descent</h3><p>Downhill rocky terrain. Braking and line selection critical. 4.2 mi.</p><div class="trail-stat">⏱️ Best Time: 19:34</div><div class="trail-stat">🏆 Leader: Taylor Chen</div><div class="trail-stat">📊 Avg Rating Boost: +7</div></div><div class="trail-card"><div class="icon">🔧</div><h3>Mechanic's Loop</h3><p>Mixed terrain with varied obstacles. Tests all skill levels. 6.9 mi.</p><div class="trail-stat">⏱️ Best Time: 38:51</div><div class="trail-stat">🏆 Leader: Riley Thompson</div><div class="trail-stat">📊 Avg Rating Boost: +5</div></div></div></section><section id="national"><h2>🇺🇸 State & National Rankings</h2><div class="coming-soon"><h3>Coming Soon 🚀</h3><p>We're expanding to include State and National rankings from other LocalMotoHub communities. More regions launching Q2-Q3 2026.</p><p style="margin-top: 15px; color: #ff6b35; font-weight: 600;">Currently: <strong>Gaines County, TX</strong></p></div></section><section id="submission"><h2>📤 Submit Your Run</h2><div class="form-wrapper"><form id="submissionForm"><div class="form-group"><label for="riderName">Rider Name *</label><input type="text" id="riderName" name="riderName" required></div><div class="form-group"><label for="riderEmail">Email *</label><input type="email" id="riderEmail" name="riderEmail" required></div><div class="form-group"><label for="runName">Run / Trail Name *</label><input type="text" id="runName" name="runName" placeholder="e.g., West Loop Trail" required></div><div class="form-group"><label for="vehicleName">Vehicle / Bike Model *</label><input type="text" id="vehicleName" name="vehicleName" placeholder="e.g., Honda CRF250R" required></div><div class="form-group"><label for="vehicleClass">Vehicle Class *</label><select id="vehicleClass" name="vehicleClass" required><option value="">-- Select Class --</option><option value="85cc–140cc (4-Stroke)">85cc–140cc (4-Stroke)</option><option value="145cc–210cc">145cc–210cc</option><option value="250cc">250cc</option><option value="450cc">450cc</option><option value="Open (ATV/SxS)">Open (ATV/SxS)</option></select></div><div class="form-group"><label for="runTime">Best Run Time (mm:ss) *</label><input type="text" id="runTime" name="runTime" placeholder="42:15" required></div><div class="form-group"><label for="fileLink">GPS Data or Video Link *</label><input type="url" id="fileLink" name="fileLink" placeholder="https://drive.google.com/... or Strava link" required></div><div class="form-group"><label for="notes">Additional Notes</label><textarea id="notes" name="notes" placeholder="Weather conditions, bike setup, any issues..."></textarea></div><div class="note">✓ <strong>Review Process:</strong> All submissions are manually reviewed within 48 hours. We verify GPS accuracy and video timestamps. Once approved, you'll be added to the leaderboard.</div><button type="submit" class="submit-btn">Submit Run</button></form></div></section></div><footer><p>🏁 LocalMotoHub • Community Driven • Unofficial • Local Use Only</p><p>Gaines County, TX | <a href="#">Contact</a> | <a href="#">Contribute</a></p><p style="font-size: 0.8rem; margin-top: 20px; color: #546e7a;">Built with ❤️ for local riders • Data last updated: <span id="footerUpdate">--</span></p></footer><script>const SAMPLE_DATA = [{rank: 1, name: 'Alex Martinez', vehicle: 'Honda CRF450R', class: '450cc', overall: 94, pace: 96, enduro: 92, consistency: 93, license: 'Pro', bestTime: '42:15'}, {rank: 2, name: 'Jordan Lee', vehicle: 'Yamaha YZ250F', class: '250cc', overall: 91, pace: 93, enduro: 89, consistency: 91, license: 'Pro', bestTime: '38:22'}, {rank: 3, name: 'Casey Johnson', vehicle: 'KTM 350 SX-F', class: '250cc', overall: 88, pace: 85, enduro: 91, consistency: 87, license: 'Pro-Am', bestTime: '39:45'}, {rank: 4, name: 'Morgan Davis', vehicle: 'Honda TRX400X ATV', class: 'Open (ATV/SxS)', overall: 85, pace: 87, enduro: 83, consistency: 85, license: 'Pro-Am', bestTime: '22:08'}, {rank: 5, name: 'Taylor Chen', vehicle: 'Suzuki RM-Z250', class: '250cc', overall: 82, pace: 84, enduro: 80, consistency: 82, license: 'Intermediate', bestTime: '40:12'}, {rank: 6, name: 'Riley Thompson', vehicle: 'Kawasaki KX250', class: '250cc', overall: 79, pace: 81, enduro: 77, consistency: 79, license: 'Intermediate', bestTime: '38:51'}, {rank: 7, name: 'Sam Mitchell', vehicle: 'Honda CRF250R', class: '145cc–210cc', overall: 76, pace: 78, enduro: 74, consistency: 76, license: 'Intermediate', bestTime: '45:23'}, {rank: 8, name: 'Chris Anderson', vehicle: 'Yamaha WR250F', class: '250cc', overall: 73, pace: 75, enduro: 71, consistency: 73, license: 'Amateur', bestTime: '41:55'}]; let allData = []; let filteredData = []; async function fetchLeaderboardData() {try {allData = SAMPLE_DATA; filteredData = [...allData]; updateLeaderboard(); updateTimestamp();} catch (error) {console.error('Error fetching data:', error); allData = SAMPLE_DATA; filteredData = [...allData]; updateLeaderboard();}} function filterLeaderboard() {const classFilter = document.getElementById('classFilter').value; const ratingFilter = document.getElementById('ratingFilter').value; filteredData = allData.filter(rider => {if (classFilter && rider.class !== classFilter) return false; return true;}); filteredData.sort((a, b) => {let aValue, bValue; switch(ratingFilter) {case 'pace': aValue = a.pace; bValue = b.pace; break; case 'enduro': aValue = a.enduro; bValue = b.enduro; break; case 'consistency': aValue = a.consistency; bValue = b.consistency; break; default: aValue = a.overall; bValue = b.overall;} return bValue - aValue;}); updateLeaderboard();} function updateLeaderboard() {const container = document.getElementById('leaderboardContainer'); if (filteredData.length === 0) {container.innerHTML = '<div class="loading"><p>No data found for selected filters.</p></div>'; return;} let tableHTML = '<table><thead><tr><th>Rank</th><th>Rider</th><th>Vehicle</th><th>Class</th><th>Overall Rating</th><th>Best Time</th><th>License</th></tr></thead><tbody>'; filteredData.forEach((rider, index) => {const rankClass = index < 3 ? `rank-${index + 1}` : 'rank-default'; const licenseClass = `license-${rider.license.toLowerCase().replace('-', '')}`; tableHTML += `<tr><td><span class="rank-badge ${rankClass}">${index + 1}</span></td><td><strong>${rider.name}</strong></td><td>${rider.vehicle}</td><td>${rider.class}</td><td><strong style="color: #ff6b35;">${rider.overall}</strong>/100</td><td>${rider.bestTime}</td><td><span class="license-badge ${licenseClass}">${rider.license}</span></td></tr>`;}); tableHTML += '</tbody></table>'; container.innerHTML = tableHTML;} function updateTimestamp() {const now = new Date(); const timeString = now.toLocaleString('en-US', {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'}); document.getElementById('lastUpdate').textContent = timeString; document.getElementById('footerUpdate').textContent = timeString;} function setupAutoRefresh() {setInterval(() => {fetchLeaderboardData(); console.log('Leaderboard auto-refreshed');}, 43200000);} document.getElementById('submissionForm').addEventListener('submit', function(e) {e.preventDefault(); const formData = {riderName: document.getElementById('riderName').value, riderEmail: document.getElementById('riderEmail').value, runName: document.getElementById('runName').value, vehicleName: document.getElementById('vehicleName').value, vehicleClass: document.getElementById('vehicleClass').value, runTime: document.getElementById('runTime').value, fileLink: document.getElementById('fileLink').value, notes: document.getElementById('notes').value, submittedAt: new Date().toISOString()}; console.log('Form submitted:', formData); alert('✓ Submission received!\n\nYour run will be reviewed within 48 hours.\n\nThank you for contributing to LocalMotoHub!'); document.getElementById('submissionForm').reset();}); document.addEventListener('DOMContentLoaded', function() {fetchLeaderboardData(); setupAutoRefresh();});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalMotoHub - Rider Rankings</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); color: #e0e0e0;}
+        header {background: linear-gradient(135deg, #1a1f3a 0%, #2d1b4e 100%); border-bottom: 3px solid #ff6b35; padding: 40px 20px; text-align: center;}
+        header h1 {font-size: 3rem; color: #ff6b35; font-weight: 900; text-transform: uppercase;}
+        .container {max-width: 1200px; margin: 0 auto; padding: 0 20px;}
+        section {margin: 60px 0;}
+        section h2 {font-size: 2rem; color: #ff6b35; margin-bottom: 30px; text-transform: uppercase; border-bottom: 2px solid #ff6b35; padding-bottom: 15px;}
+        table {width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #1a1f3a 0%, #16213e 100%); border-radius: 8px; overflow: hidden;}
+        table th {background: linear-gradient(135deg, #ff6b35 0%, #ff8a50 100%); color: #fff; padding: 15px; text-align: left; font-weight: 700; text-transform: uppercase;}
+        table td {padding: 15px; border-bottom: 1px solid #2d3748;}
+        table tr:hover {background: rgba(255, 107, 53, 0.1);}
+        .rank-badge {display: inline-block; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-weight: 700; background: #2d3748; color: #64b5f6;}
+        .rank-1 {background: #ffd700 !important; color: #333 !important;}
+        .rank-2 {background: #c0c0c0 !important; color: #333 !important;}
+        .rank-3 {background: #cd7f32 !important; color: #fff !important;}
+        .tabs {display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
+        .tab {padding: 10px 20px; background: #16213e; border: 2px solid #64b5f6; color: #64b5f6; cursor: pointer; border-radius: 4px; transition: all 0.3s; font-weight: 600;}
+        .tab.active {background: #ff6b35; color: #fff; border-color: #ff6b35;}
+        footer {background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); border-top: 2px solid #ff6b35; padding: 30px 20px; text-align: center; color: #90caf9; margin-top: 80px;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>🏁 LocalMotoHub</h1>
+</header>
+
+<div class="container">
+    <section id="overall">
+        <h2>🏁 Overall Rankings</h2>
+        <div id="overallTable"></div>
+    </section>
+
+    <section id="classes">
+        <h2>🏍️ Class Rankings</h2>
+        <div class="tabs" id="classTabs"></div>
+        <div id="classTable"></div>
+    </section>
+</div>
+
+<footer>
+    <p>🏁 LocalMotoHub • Community Driven • Last Updated: <span id="lastUpdate">Loading...</span></p>
+</footer>
+
+<script>
+const SHEET_ID = '1tODOyMqbz19BNXx_5JUMDXuhtScJolN--qCwMIBHh-0';
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=html`;
+
+let allData = [];
+let classData = {};
+
+async function loadData() {
+    try {
+        const response = await fetch(SHEET_URL);
+        const html = await response.text();
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const table = doc.querySelector('table');
+        
+        if (!table) return;
+        
+        const rows = table.querySelectorAll('tbody tr');
+        allData = [];
+        
+        // Parse overall rankings (columns B-J)
+        rows.forEach((row, idx) => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 10 || idx === 0) return;
+            
+            const rating = parseInt(cells[1]?.textContent?.trim()) || 0;
+            const name = cells[2]?.textContent?.trim() || '';
+            
+            if (rating && name) {
+                allData.push({
+                    rating: rating,
+                    name: name,
+                    number: cells[3]?.textContent?.trim() || '',
+                    controlH: parseInt(cells[4]?.textContent?.trim()) || 0,
+                    controlL: parseInt(cells[5]?.textContent?.trim()) || 0,
+                    adaptability: parseInt(cells[6]?.textContent?.trim()) || 0,
+                    experience: parseInt(cells[7]?.textContent?.trim()) || 0,
+                    pace: parseInt(cells[8]?.textContent?.trim()) || 0,
+                    mainBike: cells[9]?.textContent?.trim() || ''
+                });
+            }
+        });
+        
+        allData.sort((a, b) => b.rating - a.rating);
+        
+        // Parse classes
+        const classes = {
+            '450 Class': {col: 13},
+            '250 Class': {col: 17},
+            '210-145 Class': {col: 21},
+            '150-85 Class': {col: 25},
+            '80< Class': {col: 29},
+            'Open Class': {col: 33}
+        };
+        
+        Object.entries(classes).forEach(([name, {col}]) => {
+            classData[name] = [];
+            rows.forEach((row, idx) => {
+                if (idx === 0) return;
+                const cells = row.querySelectorAll('td');
+                if (cells.length > col + 2) {
+                    const pos = cells[col]?.textContent?.trim();
+                    const dName = cells[col + 1]?.textContent?.trim();
+                    const bike = cells[col + 2]?.textContent?.trim();
+                    
+                    if (pos && pos !== 'POS' && dName && dName !== 'Name') {
+                        classData[name].push({position: parseInt(pos) || 0, name: dName, bike: bike || ''});
+                    }
+                }
+            });
+        });
+        
+        renderAll();
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+}
+
+function renderAll() {
+    renderOverall();
+    renderClassTabs();
+}
+
+function renderOverall() {
+    let html = '<table><thead><tr><th>Rank</th><th>Rating</th><th>Name</th><th>Number</th><th>Control H</th><th>Control L</th><th>Adapt</th><th>Exp</th><th>Pace</th><th>Bike</th></tr></thead><tbody>';
+    
+    allData.forEach((rider, idx) => {
+        const rankClass = idx < 3 ? `rank-${idx + 1}` : '';
+        html += `<tr>
+            <td><span class="rank-badge ${rankClass}">${idx + 1}</span></td>
+            <td><strong style="color: #ff6b35;">${rider.rating}</strong></td>
+            <td>${rider.name}</td>
+            <td>${rider.number}</td>
+            <td>${rider.controlH}</td>
+            <td>${rider.controlL}</td>
+            <td>${rider.adaptability}</td>
+            <td>${rider.experience}</td>
+            <td>${rider.pace}</td>
+            <td>${rider.mainBike}</td>
+        </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    document.getElementById('overallTable').innerHTML = html;
+}
+
+function renderClassTabs() {
+    let tabsHtml = '';
+    Object.keys(classData).forEach((className, idx) => {
+        tabsHtml += `<button class="tab ${idx === 0 ? 'active' : ''}" onclick="showClass('${className}')">${className}</button>`;
+    });
+    document.getElementById('classTabs').innerHTML = tabsHtml;
+    showClass(Object.keys(classData)[0]);
+}
+
+function showClass(className) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const data = classData[className] || [];
+    let html = '<table><thead><tr><th>Pos</th><th>Name</th><th>Bike</th></tr></thead><tbody>';
+    
+    data.forEach((rider, idx) => {
+        const rankClass = idx < 3 ? `rank-${idx + 1}` : '';
+        html += `<tr><td><span class="rank-badge ${rankClass}">${rider.position}</span></td><td>${rider.name}</td><td>${rider.bike}</td></tr>`;
+    });
+    
+    html += '</tbody></table>';
+    document.getElementById('classTable').innerHTML = html;
+}
+
+window.addEventListener('DOMContentLoaded', loadData);
+setInterval(loadData, 43200000);
+</script>
+</body>
+</html>
